@@ -1,16 +1,29 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+body {
+  background-color: #ddd;
 }
 
-.thumbnail {
-  height: 200px;
+.test1 {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+}
 
-  img.pull-right {
-    width: 50px;
-  }
+.test2 {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+}
+
+.link1 {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.link2 {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
