@@ -1,4 +1,6 @@
-app.factory('searchAndFilterFactory2', function ($filter) {
+angular.module('baseangular')
+
+.factory('searchAndFilterFactory2', function ($filter) {
 
   /**
    * @method filterBySearchQuery
