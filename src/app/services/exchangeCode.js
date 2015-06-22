@@ -8,10 +8,10 @@ var searchControls = {
     };
 
     // Get a SearchFactory instance and attach it to the scope
-    $scope.searcher = searchAndFilterFactory2.getFactoryInstance(searchControls);
+    //$scope.searcher = searchAndFilterFactory2.getFactoryInstance(searchControls);
 
 
 
-$scope.search = function (caller) {
-      $scope.searcher.search($scope.liveStreams, caller);
-};
+//$scope.search = function (caller) {
+//      $scope.searcher.search($scope.liveStreams, caller);
+//};
