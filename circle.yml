@@ -20,6 +20,11 @@ machine:
   services:
     - docker
 
+## Customize general stuff
+general:
+  artifacts:
+    - "dist/" # relative to the build directory
+
 ## Customize dependencies
 dependencies:
   pre:
@@ -41,7 +46,7 @@ deployment:
     commands:
       - docker build -t="grailian/base-angular" .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push grailian/base-angular:$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
+      - docker push grailian/base-angular:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
 
 ## Custom notifications
 notify:
