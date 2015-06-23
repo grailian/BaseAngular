@@ -1,0 +1,50 @@
+## Customize the test machine
+machine:
+
+  timezone:
+    America/New_York # Set the timezone
+
+  # Version of ruby to use
+  node:
+    version: 0.10.22
+
+  # Override /etc/hosts
+  hosts:
+    circlehost: 127.0.0.1
+    dev.mycompany.com: 127.0.0.1
+
+  # Add some environment variables
+  environment:
+    CIRCLE_ENV: test
+
+  services:
+    - docker
+
+## Customize checkout
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init # use submodules
+
+## Customize dependencies
+dependencies:
+  pre:
+    - bower install
+
+  override:
+    - docker info
+    - docker build -t="dockerfile/ubuntu" github.com/dockerfile/ubuntu
+
+## Customize deployment commands
+deployment:
+  staging:
+    branch: master
+    commands:
+      - docker build -t="grailian/base-angular" .
+      - docker push grailian/base-angular
+
+## Custom notifications
+notify:
+  webhooks:
+    # A list of hashes representing hooks. Only the url field is supported.
+    - url: https://someurl.com/hooks/circle
