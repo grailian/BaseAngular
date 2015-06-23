@@ -20,12 +20,6 @@ machine:
   services:
     - docker
 
-## Customize checkout
-checkout:
-  post:
-    - git submodule sync
-    - git submodule update --init # use submodules
-
 ## Customize dependencies
 dependencies:
   pre:
@@ -38,7 +32,7 @@ dependencies:
 ## Customize test commands
 test:
   post:
-    - gulp build
+    - npm run build
 
 ## Customize deployment commands
 deployment:
