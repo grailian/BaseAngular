@@ -13,7 +13,7 @@ RUN mkdir /root/.ssh/
 # Copy over private key, and set permissions
 ADD id_rsa /root/.ssh/id_rsa
 WORKDIR /root/.ssh/
-RUN chmod 700 id_rsa
+RUN sudo chmod 400 id_rsa
 
 WORKDIR /home
 
