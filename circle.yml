@@ -27,7 +27,7 @@ dependencies:
 
   override:
     - docker info
-    - docker build -t="dockerfile/ubuntu" github.com/dockerfile/ubuntu
+    - docker pull ubuntu
 
 ## Customize test commands
 test:
