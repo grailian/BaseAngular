@@ -35,6 +35,11 @@ dependencies:
     - docker info
     - docker build -t="dockerfile/ubuntu" github.com/dockerfile/ubuntu
 
+## Customize test commands
+test:
+  post:
+    - gulp build
+
 ## Customize deployment commands
 deployment:
   staging:
