@@ -1,7 +1,6 @@
+'use strict';
+
 angular.module('baseangular')
-
-.controller('GPCtrl', function($scope) {
-  'use strict';
-
-
-});
+  .controller('GPCtrl', function ($scope) {
+    $scope.GP = 'Guinea Pig';
+  });

@@ -19,6 +19,8 @@
   "white": true,
   "validthis": true,
   "globals": {
+    "window": false,
+    "sessionStorage": true,
     "angular": false,
     // Angular Mocks
     "inject": false,
