@@ -47,8 +47,8 @@ deployment:
       - docker build -t="grailian/base-angular:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - echo $CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
-      - echo ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
       - docker push grailian/base-angular:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
+      - ssh root@ci-1.rbmtv.com "docker ps"
 
 ## Custom notifications
 notify:
