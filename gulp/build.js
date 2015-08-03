@@ -1,7 +1,8 @@
 'use strict';
 
-var gulp = require('gulp');
-
+var gulp = require('gulp'),
+  fs = require('fs'),
+  path = require('path');
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
@@ -81,9 +82,22 @@ module.exports = function(options) {
       .pipe(gulp.dest(options.dist + '/'));
   });
 
-  gulp.task('clean', function (done) {
-    $.del([options.dist + '/', options.tmp + '/'], done);
+  // Create an empty package directory for the tarball of the
+  gulp.task('artifactsDir', ['clean'], function (done) {
+    // WHY CAN'T GULP DO THIS GAHHH!!!
+    var mkdirpSync = function (dirpath) {
+      var parts = dirpath.split(path.sep);
+      for (var i = 1; i <= parts.length; i++) {
+        fs.mkdirSync(path.join.apply(null, parts.slice(0, i)));
+      }
+    };
+    mkdirpSync(options.artifacts);
+    return done();
   });
 
-  gulp.task('build', ['html', 'fonts', 'other']);
+  gulp.task('clean', function (done) {
+    $.del([options.dist + '/', options.tmp + '/', options.artifacts], done);
+  });
+
+  gulp.task('build', ['html', 'fonts', 'other', 'artifactsDir']);
 };

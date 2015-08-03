@@ -1,9 +1,6 @@
 ## Customize the test machine
 machine:
 
-  timezone:
-    America/New_York # Set the timezone
-
   # Version of ruby to use
   node:
     version: 0.10.22
@@ -17,22 +14,15 @@ machine:
   environment:
     CIRCLE_ENV: test
 
-  services:
-    - docker
-
 ## Customize general stuff
 general:
   artifacts:
-    - "dist/" # relative to the build directory
+    - "artifacts/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM.tar" # relative to the build directory
 
 ## Customize dependencies
 dependencies:
   pre:
     - bower install
-
-  override:
-    - docker info
-    - docker pull ubuntu
 
 ## Customize test commands
 test:
@@ -41,17 +31,13 @@ test:
 
 ## Customize deployment commands
 deployment:
-  staging:
-    branch: master
+  dev:
+    branch: dev
     commands:
-      - docker build -t="grailian/base-angular:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" .
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - echo $CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
-      - docker push grailian/base-angular:${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
-      - ssh root@ci-1.rbmtv.com "docker ps"
+      - ./deploy-dev.sh
 
 ## Custom notifications
 notify:
   webhooks:
     # A list of hashes representing hooks. Only the url field is supported.
-    - url: https://someurl.com/hooks/circle
+    # - url: https://someurl.com/hooks/circle
