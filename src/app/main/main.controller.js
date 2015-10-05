@@ -2,6 +2,7 @@
 
 angular.module('baseangular')
   .controller('MainCtrl', function ($scope) {
+    $scope.buildNumber = '@@buildNumber';
     $scope.awesomeThings = [
       {
         'title': 'AngularJS',
